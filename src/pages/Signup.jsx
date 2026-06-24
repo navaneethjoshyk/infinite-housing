@@ -9,7 +9,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { ChevronLeftIcon, GoogleIcon, FacebookIcon } from '../components/Icons'
+import { GoogleIcon, FacebookIcon } from '../components/Icons'
+import BackButton from '../components/BackButton'
 import client from '../api/client'
 
 export default function Signup() {
@@ -48,13 +49,10 @@ export default function Signup() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center gap-1 text-gray-600 p-4 text-sm"
-      >
-        <ChevronLeftIcon /> Back
-      </button>
+    <div className="flex flex-col min-h-screen bg-white max-w-lg mx-auto w-full">
+      <div className="px-4 pt-4">
+        <BackButton />
+      </div>
 
       {/* Pink/warm background card — matches your design */}
       <div className="mx-4 mt-4 bg-rose-50 rounded-3xl p-6 flex-1">

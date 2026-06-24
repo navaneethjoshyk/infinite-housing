@@ -14,7 +14,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronLeftIcon, ImageIcon } from '../components/Icons'
-import BottomNav from '../components/BottomNav'
+import Layout from '../components/Layout'
 import client from '../api/client'
 
 // Fallback data while API loads
@@ -42,18 +42,15 @@ export default function Modules() {
   }, [])
 
   return (
-    <div className="flex flex-col min-h-screen bg-white pb-20">
-      <div className="px-4 pt-6 pb-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-1 text-gray-600 text-sm mb-4"
-        >
+    <Layout>
+      <div className="px-4 sm:px-8 pt-6 pb-4">
+        <button onClick={() => navigate(-1)} className="flex items-center gap-1 text-gray-600 text-sm mb-4">
           <ChevronLeftIcon />
         </button>
-        <h1 className="text-2xl font-bold text-black">Module</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-black">Module</h1>
       </div>
 
-      <div className="px-4 space-y-4">
+      <div className="px-4 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {modules.map((mod) => {
           const { text, color } = statusLabel(mod)
           return (
@@ -62,7 +59,6 @@ export default function Modules() {
               onClick={() => navigate(`/modules/${mod._id}`)}
               className="w-full border border-gray-200 rounded-2xl overflow-hidden text-left hover:shadow-sm transition-shadow"
             >
-              {/* Image placeholder */}
               <div className="bg-gray-100 h-36 flex items-center justify-center">
                 <ImageIcon className="w-10 h-10 text-gray-400" />
               </div>
@@ -74,8 +70,6 @@ export default function Modules() {
           )
         })}
       </div>
-
-      <BottomNav />
-    </div>
+    </Layout>
   )
 }

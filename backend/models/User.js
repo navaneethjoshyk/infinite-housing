@@ -52,12 +52,12 @@ const userSchema = new mongoose.Schema({
 })
 
 // Pre-save hook: hash password before storing
-userSchema.pre('save', async function (next) {
-  // Only hash if password was changed (not on other updates)
-  if (!this.isModified('password')) return next()
-  const salt = await bcrypt.genSalt(12)  // 12 rounds = secure and reasonably fast
+// Note: In Mongoose v7+, async middleware does NOT receive next() —
+// just return early instead of calling next()
+userSchema.pre('save', async function () {
+  if (!this.isModified('password')) return
+  const salt = await bcrypt.genSalt(12)
   this.password = await bcrypt.hash(this.password, salt)
-  next()
 })
 
 // Instance method: compare a plain password to the stored hash

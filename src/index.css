@@ -19,27 +19,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/*
-  Mobile phone frame — our app is mobile-first.
-  We center a 390px wide container (iPhone size) on desktop
-  so it always looks like a phone screen.
-*/
 #root {
-  display: flex;
-  justify-content: center;
   min-height: 100vh;
 }
 
 .phone-frame {
-  width: 390px;
+  width: 100%;
   min-height: 100vh;
   background: white;
-  position: relative;
-  overflow: hidden;
-}
-
-@media (max-width: 390px) {
-  .phone-frame {
-    width: 100%;
-  }
 }
