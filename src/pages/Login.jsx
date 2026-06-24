@@ -16,7 +16,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { ChevronLeftIcon, GoogleIcon, FacebookIcon, AppleIcon, ImageIcon } from '../components/Icons'
+import { GoogleIcon, FacebookIcon, AppleIcon, ImageIcon } from '../components/Icons'
+import BackButton from '../components/BackButton'
 import client from '../api/client'
 
 export default function Login() {
@@ -54,14 +55,10 @@ export default function Login() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      {/* Back button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center gap-1 text-gray-600 p-4 text-sm"
-      >
-        <ChevronLeftIcon /> Back
-      </button>
+    <div className="flex flex-col min-h-screen bg-white max-w-lg mx-auto w-full">
+      <div className="px-4 pt-4">
+        <BackButton />
+      </div>
 
       {/* Logo placeholder */}
       <div className="flex justify-center mt-6 mb-2">

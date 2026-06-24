@@ -12,7 +12,7 @@
 
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeftIcon } from '../components/Icons'
+import BackButton from '../components/BackButton'
 import client from '../api/client'
 
 const MOCK = {
@@ -39,12 +39,9 @@ export default function ModuleDetail() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* Header */}
       <div className="flex items-center justify-center px-4 pt-6 pb-2 relative">
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute left-4 text-gray-600"
-        >
-          <ChevronLeftIcon />
-        </button>
+        <div className="absolute left-4">
+          <BackButton />
+        </div>
         <h2 className="text-base font-semibold text-black">{module.title}</h2>
       </div>
 

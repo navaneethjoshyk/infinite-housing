@@ -43,7 +43,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="phone-frame">
+        <div className="phone-frame w-full">
           <Routes>
             {/* Public routes — anyone can visit */}
             <Route path="/" element={<Splash />} />

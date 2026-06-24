@@ -20,13 +20,19 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+
+// In ES modules there's no __dirname by default — we recreate it
+const __dirname = dirname(fileURLToPath(import.meta.url))
+// Load .env from the same folder as server.js, regardless of where
+// the process was started from
+dotenv.config({ path: join(__dirname, '.env') })
 
 import authRoutes from './routes/auth.js'
 import userRoutes from './routes/users.js'
 import moduleRoutes from './routes/modules.js'
 import licenseRoutes from './routes/licenses.js'
-
-dotenv.config()
 
 const app = express()
 

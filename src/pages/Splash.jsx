@@ -20,7 +20,7 @@ export default function Splash() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col min-h-screen bg-white px-6">
+    <div className="flex flex-col min-h-screen bg-white px-6 sm:px-12 max-w-lg mx-auto w-full">
       {/* Logo area — top center */}
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-24 h-24 border-2 border-gray-300 rounded-2xl flex items-center justify-center mb-12">

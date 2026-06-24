@@ -15,6 +15,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ImageIcon } from '../components/Icons'
+import BackButton from '../components/BackButton'
 import client from '../api/client'
 
 const userTypes = [
@@ -42,7 +43,8 @@ export default function SelectUserType() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white px-6 pt-10">
+    <div className="flex flex-col min-h-screen bg-white px-6 pt-6">
+      <BackButton />
       <h1 className="text-2xl font-bold text-black mb-6">Select user type</h1>
 
       <div className="flex flex-col gap-4 flex-1">

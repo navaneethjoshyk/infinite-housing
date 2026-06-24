@@ -10,7 +10,8 @@
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronLeftIcon, ChevronRightIcon } from '../components/Icons'
+import { ChevronRightIcon } from '../components/Icons'
+import BackButton from '../components/BackButton'
 import client from '../api/client'
 
 export default function FillForm() {
@@ -46,9 +47,7 @@ export default function FillForm() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white px-4 pt-6">
-      <button onClick={() => navigate(-1)} className="flex items-center gap-1 text-gray-600 text-sm mb-6">
-        <ChevronLeftIcon /> Back
-      </button>
+      <BackButton />
 
       <h1 className="text-2xl font-bold text-black mb-6">Fill in the form</h1>
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronLeftIcon, ImageIcon } from '../components/Icons'
+import { ImageIcon } from '../components/Icons'
+import BackButton from '../components/BackButton'
 
 const products = [
   { id: 'hempbase',   label: 'HempBase Panel' },
@@ -13,9 +14,7 @@ export default function ProductSelect() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white px-4 pt-6">
-      <button onClick={() => navigate(-1)} className="flex items-center gap-1 text-gray-600 text-sm mb-8">
-        <ChevronLeftIcon /> Back
-      </button>
+      <BackButton />
 
       <div className="flex-1 space-y-4">
         {products.map((p) => (
