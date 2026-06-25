@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { GoogleIcon, FacebookIcon } from '../components/Icons'
 import BackButton from '../components/BackButton'
+import { LogoIcon } from '../components/Logo'
 import client from '../api/client'
 
 export default function Signup() {
@@ -32,20 +33,12 @@ export default function Signup() {
     <div className="flex flex-col min-h-screen bg-white max-w-lg mx-auto w-full px-6 pt-6">
       <BackButton />
 
-      {/* Logo */}
       <div className="flex justify-center mb-6">
-        <div className="w-20 h-20 bg-gray-900 rounded-2xl flex items-center justify-center">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="white">
-            <rect x="4" y="4" width="14" height="10" rx="2"/>
-            <rect x="22" y="4" width="14" height="10" rx="2"/>
-            <rect x="4" y="18" width="32" height="4" rx="2"/>
-            <rect x="4" y="26" width="32" height="10" rx="2"/>
-          </svg>
-        </div>
+        <LogoIcon size={72} />
       </div>
 
-      <h1 className="text-3xl font-bold text-black mb-1">Welcome back!</h1>
-      <p className="text-gray-500 text-sm mb-6">Log in and start your licence journey now.</p>
+      <h1 className="text-3xl font-bold text-black mb-1">Get started</h1>
+      <p className="text-gray-500 text-sm mb-6">Create your account and begin your journey.</p>
 
       {error && <div className="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl p-3 mb-4">{error}</div>}
 
@@ -75,7 +68,7 @@ export default function Signup() {
       </div>
 
       <button onClick={handleSignup} disabled={loading} className="btn-brand w-full py-4 text-white font-medium mb-3 disabled:opacity-50">
-        {loading ? 'Creating account...' : 'Log in'}
+        {loading ? 'Creating account...' : 'Sign up'}
       </button>
 
       <button className="w-full py-4 btn-brand text-white font-medium mb-3 flex items-center justify-center gap-2">
@@ -87,8 +80,8 @@ export default function Signup() {
       </button>
 
       <p className="text-center text-sm text-gray-500 pb-8">
-        Don't have an account?{' '}
-        <button onClick={() => navigate('/signup')} className="font-semibold text-black">Sign up</button>
+        Already have an account?{' '}
+        <button onClick={() => navigate('/login')} className="font-semibold text-black">Log in</button>
       </p>
     </div>
   )

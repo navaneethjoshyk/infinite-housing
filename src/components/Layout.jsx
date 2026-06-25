@@ -9,6 +9,7 @@
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { HomeIcon, LicenseIcon, SearchIcon, ProfileIcon } from './Icons'
+import { LogoWordmark } from './Logo'
 
 const tabs = [
   { label: 'Home',    icon: HomeIcon,    path: '/dashboard' },
@@ -57,8 +58,7 @@ export default function Layout({ children }) {
       {/* Sidebar — desktop only */}
       <aside className="hidden lg:flex flex-col w-64 shrink-0 border-r border-gray-100 px-4 py-8">
         <div className="mb-10 px-2">
-          <h1 className="text-xl font-bold text-black">Infinite Housing</h1>
-          <p className="text-xs text-gray-400 mt-1">Eco-friendly building</p>
+          <LogoWordmark iconSize={40} />
         </div>
         <nav className="flex flex-col gap-1">
           <NavItems vertical />
