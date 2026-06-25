@@ -14,49 +14,32 @@
 */
 
 import { useNavigate } from 'react-router-dom'
-import { ImageIcon } from '../components/Icons'
 
 export default function Splash() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col min-h-screen bg-white px-6 sm:px-12 max-w-lg mx-auto w-full">
-      {/* Logo area — top center */}
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="w-24 h-24 border-2 border-gray-300 rounded-2xl flex items-center justify-center mb-12">
-          <ImageIcon className="w-12 h-12 text-gray-400" />
-        </div>
-
-        <h1 className="text-3xl font-bold text-black mb-4">Welcome back!</h1>
-
-        <p className="text-gray-600 text-sm text-center leading-relaxed">
-          Ready to reshape the future of construction?{' '}
-          With <strong>Infinite Housing</strong>, you'll master eco-friendly
-          building techniques and lead the way in sustainable construction.
-          Start your journey today.
+    <div
+      className="flex flex-col min-h-screen px-6 relative"
+      style={{
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.85) 100%), url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800") center/cover no-repeat',
+      }}
+    >
+      <div className="flex-1 flex flex-col justify-end pb-10">
+        <h1 className="text-4xl font-bold text-white mb-3">Welcome back!</h1>
+        <p className="text-white/80 text-sm leading-relaxed mb-10">
+          Ready to reshape the future of construction? With Infinite Housing.{'\n'}
+          Master eco-friendly building techniques and lead the way in sustainable construction. Start your journey today.
         </p>
-      </div>
 
-      {/* Bottom buttons */}
-      <div className="flex gap-3 pb-10 pt-6">
-        {/*
-          Why onClick={() => navigate('/signup')}?
-          The arrow function delays execution — if we wrote
-          onClick={navigate('/signup')} it would navigate immediately
-          on render, not on click.
-        */}
-        <button
-          onClick={() => navigate('/signup')}
-          className="flex-1 py-4 rounded-full bg-gray-200 text-black font-medium hover:bg-gray-300 transition-colors"
-        >
-          Sign up
-        </button>
-        <button
-          onClick={() => navigate('/login')}
-          className="flex-1 py-4 rounded-full bg-gray-200 text-black font-medium hover:bg-gray-300 transition-colors"
-        >
-          Log in
-        </button>
+        <div className="flex gap-3">
+          <button onClick={() => navigate('/onboarding')} className="flex-1 py-4 btn-brand text-white font-medium">
+            Sign up
+          </button>
+          <button onClick={() => navigate('/login')} className="flex-1 py-4 btn-brand text-white font-medium">
+            Log in
+          </button>
+        </div>
       </div>
     </div>
   )

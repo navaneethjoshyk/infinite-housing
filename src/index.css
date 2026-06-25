@@ -7,24 +7,45 @@
 */
 @import "tailwindcss";
 
-/* Global resets */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #f5f5f5;
   -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  min-height: 100vh;
+:root {
+  --brand: #C4883A;
+  --brand-dark: #a06d28;
+  --bg: #F2F2F2;
 }
+
+#root { min-height: 100vh; }
 
 .phone-frame {
   width: 100%;
   min-height: 100vh;
   background: white;
 }
+
+/* Brand button */
+.btn-brand {
+  background: var(--brand);
+  color: white;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.btn-brand:hover { background: var(--brand-dark); }
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid #d1d5db;
+  border-radius: 999px;
+  font-weight: 500;
+  color: #374151;
+  transition: background 0.2s;
+}
+.btn-outline:hover { background: #f9fafb; }
