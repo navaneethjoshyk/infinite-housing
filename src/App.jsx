@@ -20,6 +20,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 
 // Screens
 import Splash from './pages/Splash'
+import Onboarding from './pages/Onboarding'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import SelectUserType from './pages/SelectUserType'
@@ -47,6 +48,7 @@ function App() {
           <Routes>
             {/* Public routes — anyone can visit */}
             <Route path="/" element={<Splash />} />
+            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/select-user-type" element={<SelectUserType />} />

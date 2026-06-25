@@ -1,13 +1,3 @@
-/*
-  FillForm.jsx — License Application Form
-
-  WHY one state object for all fields?
-  Instead of const [name, setName] = useState('') for every field,
-  we use one object: const [form, setForm] = useState({ name: '', ... })
-  The generic handleChange function updates any field by its `name` attribute.
-  This scales cleanly from 3 fields to 20 fields.
-*/
-
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon } from '../components/Icons'
@@ -16,76 +6,59 @@ import client from '../api/client'
 
 export default function FillForm() {
   const navigate = useNavigate()
-  const [form, setForm] = useState({
-    fullName: '', company: '', phone: '', email: '', address: '', services: ''
-  })
+  const [phone, setPhone] = useState('')
+  const [agreed, setAgreed] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const handleChange = (e) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
 
   const handleContinue = async () => {
     try {
       setLoading(true)
-      await client.post('/licenses/apply', form)
+      await client.post('/licenses/apply', { phone })
       navigate('/license-checkpoint')
-    } catch {
-      navigate('/license-checkpoint') // proceed anyway for demo
-    } finally {
-      setLoading(false)
-    }
+    } catch { navigate('/license-checkpoint') }
+    finally { setLoading(false) }
   }
 
-  const fields = [
-    { name: 'fullName',  label: 'Your full name', placeholder: 'Enter your name',                    type: 'text' },
-    { name: 'company',   label: 'Your Company',   placeholder: 'Enter your Company name',             type: 'text' },
-    { name: 'phone',     label: 'Your Phone no',  placeholder: 'Enter your Phone no',                 type: 'tel'  },
-    { name: 'email',     label: 'Enter your mail id', placeholder: 'Enter your mail id',              type: 'email'},
-    { name: 'address',   label: 'Address',         placeholder: 'Unit no, Street address, City, Pincode', type: 'text' },
-  ]
-
   return (
-    <div className="flex flex-col min-h-screen bg-white px-4 pt-6">
+    <div className="flex flex-col min-h-screen bg-white px-5 pt-6 max-w-lg mx-auto w-full">
       <BackButton />
 
-      <h1 className="text-2xl font-bold text-black mb-6">Fill in the form</h1>
+      <h1 className="text-3xl font-bold text-black mb-8">Almost Ready!</h1>
 
       <div className="flex-1 space-y-3">
-        {fields.map((f) => (
-          <div key={f.name} className="relative border border-gray-300 rounded-xl px-3 pt-5 pb-3">
-            {/* Floating label — sits at top of input border */}
-            <label className="absolute top-1.5 left-3 text-xs text-gray-400">{f.label}</label>
-            <input
-              name={f.name}
-              type={f.type}
-              value={form[f.name]}
-              onChange={handleChange}
-              placeholder={f.placeholder}
-              className="w-full text-sm outline-none text-gray-700 placeholder-gray-300"
-            />
-          </div>
-        ))}
+        {/* Phone field */}
+        <div className="relative border border-gray-300 rounded-xl px-4 pt-5 pb-3">
+          <label className="absolute top-1.5 left-4 text-xs text-gray-400">Your Phone no</label>
+          <input
+            type="tel"
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
+            placeholder="Enter your Phone no"
+            className="w-full text-sm outline-none text-gray-700 placeholder-gray-300 bg-transparent"
+          />
+        </div>
 
-        {/* Services selector */}
+        {/* Services */}
         <button className="w-full border border-gray-300 rounded-xl px-4 py-4 flex items-center justify-between">
           <span className="text-sm text-gray-700">Services</span>
           <ChevronRightIcon className="w-4 h-4 text-gray-400" />
         </button>
+
+        {/* Terms */}
+        <label className="flex items-center gap-3 text-sm text-gray-700 pt-2">
+          <input
+            type="checkbox"
+            checked={agreed}
+            onChange={e => setAgreed(e.target.checked)}
+            className="w-5 h-5 accent-[#C4883A]"
+          />
+          Terms and conditions
+        </label>
       </div>
 
       <div className="flex gap-3 pb-10 pt-6">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex-1 py-4 border border-gray-300 rounded-full text-sm font-medium"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleContinue}
-          disabled={loading}
-          className="flex-1 py-4 bg-black text-white rounded-full text-sm font-medium disabled:opacity-50"
-        >
+        <button onClick={() => navigate(-1)} className="btn-outline flex-1 py-4 text-sm">Cancel</button>
+        <button onClick={handleContinue} disabled={loading} className="btn-brand flex-1 py-4 text-white text-sm disabled:opacity-50">
           {loading ? 'Saving...' : 'Continue'}
         </button>
       </div>
