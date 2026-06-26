@@ -1,11 +1,3 @@
-/*
-  Icons.jsx — Shared SVG Icons
-
-  WHY a shared file?
-  We use the same icons (image placeholder, home, search, etc.)
-  across many screens. Putting them here means we import once
-  and change once if the design ever updates.
-*/
 
 export function ImageIcon({ className = 'w-6 h-6' }) {
   return (
